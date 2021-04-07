@@ -4,13 +4,7 @@ const gridContainer = document.querySelector("#gridContainer");
 const row = document.getElementsByClassName("rowCell");
 //coloumn
 const col = document.getElementsByClassName("colCell");
-
-createGrid();
-/* function to create Grid */
-function createGrid() {
-  makeRows(16);
-  makeCols(16);
-}
+//
 
 /* function to make rows */
 function makeRows(rowNum) {
@@ -30,11 +24,59 @@ function makeCols(colNum) {
       let colCell = document.createElement("div");
       colCell.classList.add("colCell");
       row[i].appendChild(colCell);
-      colCell.addEventListener("mouseover", changeColor);
     }
   }
 }
 /* function to change color og grid */
-function changeColor(e) {
-  console.log((e.target.style.backgroundColor = "red"));
+function changeColor() {
+  const changeColorBtn = document.createElement("button");
+  changeColorBtn.textContent = "Change Color";
+  gridContainer.appendChild(changeColorBtn);
+  changeColorBtn.addEventListener("click", () => {
+    for (i = 0; i < col.length; i++) {
+      col[i].addEventListener("mouseover", (e) => {
+        e.target.style.background = "red";
+      });
+    }
+  });
 }
+
+function resetColor() {
+  const resetColorBtn = document.createElement("button");
+  resetColorBtn.textContent = "reset color";
+  gridContainer.append(resetColorBtn);
+  resetColorBtn.addEventListener("click", () => {
+    cols = document.querySelectorAll(".colCell");
+    for (i = 0; i < cols.length; i++) {
+      cols[i].style.background = "";
+    }
+  });
+}
+/* function to get input for the output of the the number of grids */
+//button
+const createGridbtn = document.createElement("button");
+createGridbtn.textContent = `Grid Size ?`;
+gridContainer.appendChild(createGridbtn);
+
+/* function to create Grid */
+createGridbtn.addEventListener("click", createGrid);
+function createGrid() {
+  userChoice = parseInt(window.prompt("Grid size?"));
+  if (userChoice > 16) return;
+  makeRows(userChoice);
+  makeCols(userChoice);
+}
+
+//creal the grid from the DOM
+const clrBtn = document.createElement("button");
+clrBtn.textContent = "Clear the grid";
+gridContainer.appendChild(clrBtn);
+clrBtn.addEventListener("click", clearGrid);
+function clearGrid() {
+  makeCols();
+  makeRows();
+}
+//createGrid();
+changeColor();
+resetColor();
+//clearGrid();
