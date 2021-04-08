@@ -1,24 +1,21 @@
 body {
   margin: 0;
-  padding: 10px;
+  padding: 0px;
   background: gainsboro;
 }
 .colCell {
   border: 1px solid gray;
-  min-width: 50px;
-  min-height: 50px;
+  min-width: 10px;
+  min-height: 10px;
   display: inline-block;
-  margin: auto;
 }
 #gridContainer {
-  background: white;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  width: 960px;
-  height: 960px;
   margin: auto;
-  margin-top: 2em;
+  align-items: center;
+
+  background: white;
 }
 
 .hoverChange {
